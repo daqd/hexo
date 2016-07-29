@@ -1,5 +1,5 @@
 ---
-title: 使用GitHub+Hexo搭建博客系统
+title: 使用GitHub+Hexo免费搭建博客系统
 date: 2016-07-22 15:06:48
 tags:
 	- github
