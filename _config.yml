@@ -4,8 +4,8 @@
 
 # Site
 title: Mengyu's Notes
-subtitle: 于我，过去，现在以及未来
-description: 心有猛虎，细嗅蔷薇
+subtitle: 心有猛虎，细嗅蔷薇
+description: 于我，过去，现在以及未来
 author: Mengyu's Notes
 language: zh-Hans
 timezone:
@@ -69,7 +69,9 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: http://github.com/daqd/daqd.github.io.git
-  branch: master
+  message: ""
+  repo: 
+				github:  git@github.com:daqd/daqd.github.io.git,master
+				coding:  git@git.coding.net:daqd/daqd.git,master
 
 duoshuo_shortname: h5for2016
