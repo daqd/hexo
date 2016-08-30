@@ -1,7 +1,7 @@
 ---
 title: CSS Modules 用法教程
 date: 2016-08-01 16:39:58
-tags: css-modules
+tags: cssModules
 ---
 
 > 原文链接：http://www.ruanyifeng.com/blog/2016/06/css_modules.html
