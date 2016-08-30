@@ -227,72 +227,25 @@
 }
 .tagcloud{
     a{
+        -webkit-transition: background-color .2s ease-in-out,color .2s ease-in-out;
+        transition: background-color .2s ease-in-out,color .2s ease-in-out;
+        border-radius: 5px;
+        padding: 2px 5px;
+        background-color: rgba(102,128,153,.175);
+        color: rgba(44,63,81,.5);
         display:inline-block;  
         text-decoration:none;  
         font-weight: normal;
-        font-size:10px;  
-        color:#fff;   
+        font-size:14px !important;    
         height:18px;  
-        line-height:18px;  
-        float: left;
-        padding:0 5px 0px 10px;  
+        line-height:14px;  
+        float: left; 
         position:relative;  
-        border-radius:0 5px 5px 0; 
-        margin: 5px 9px 5px 8px;
-        font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+        margin: 5px 5px 5px 5px;
+        font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif !important;
         &:hover{
             opacity: 0.8;
-        }
-        &:before{
-            content: " ";
-            width: 0px;
-            height: 0px;
-            position: absolute;
-            top: 0;
-            left: -18px;
-            border: 9px solid transparent;
-        }
-        &:after{  
-            content:" ";  
-            width:4px;  
-            height:4px;  
-            background-color:#fff;  
-            border-radius:4px;  
-            box-shadow:0px 0px 0px 1px rgba(0,0,0,.3);  
-            position:absolute;  
-            top: 7px;
-            left: 2px;
-        }  
-    }
-    a.color1{
-        background:  #9a9999;
-        &:before{
-            border-right-color: #9a9999;  
-        }
-    }
-    a.color2{
-        background:  #9a9999;
-        &:before{
-            border-right-color: #9a9999;  
-        }
-    }
-    a.color3{
-        background:  #9a9999;
-        &:before{
-            border-right-color: #9a9999;  
-        }
-    }
-    a.color4{
-        background: #9a9999;
-        &:before{
-            border-right-color:#9a9999;  
-        }
-    }
-    a.color5{
-        background: #9a9999;
-        &:before{
-            border-right-color:#9a9999;  
-        }
+        } 
     }
 }
 
@@ -313,7 +266,7 @@
         font: 16px FontAwesome;
         float: left;
         margin-right: 10px;
-        margin-top: 9px;
+        margin-top: 12px;
     }
     &:after{
         float: left;
