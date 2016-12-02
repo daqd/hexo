@@ -8,7 +8,7 @@
 			height: 110px;
 			position: absolute;
 			width: 100%;
-			background: #4d4d4d;
+			background: #2b2e3b;
 			&.fixed{
 		        position: fixed;
 		        height: 42px;
@@ -38,11 +38,12 @@
 		}
 	}
 	.left-col {
-		background: #202020;
+		background: #2b2e3b;
 		width: 300px;
 		position:fixed;
 		transition:all .2s ease-in;
 		height:100%;
+		border-right:1px solid #2f3241;
 
 		.overlay{
 			width: 100%;
@@ -97,9 +98,9 @@
 #header{
 	width:100%;
 	a {
-		color: #999;
+		color: #9ee9f8;
 		&:hover {
-			color: #888;
+			color: #7db8c4;
 		}
 	}
 	.profilepic{
@@ -134,7 +135,7 @@
 	}
 	.header-subtitle{
 		text-align: center;
-		color:#999;
+		color:#6798a2;
 		font-size: 14px;
 		line-height: 25px;
 		overflow: hidden;
@@ -203,11 +204,11 @@
 				*display:inline;
 				text-align:center;
 				margin:0 8px 15px 8px;
-				opacity:0.7;
+				opacity:1;
 				width:28px;
 				height:28px;
 				transition:0.3s;
-				font-size:18px;
+				font-size:25px;
 				line-height:28px;
 				color:#FFF;
 				&:hover {
@@ -218,11 +219,10 @@
 				margin-right:0
 			}
 			a.weibo {
-				background:#999;
-				border:1px solid #999;
+				color:#6798a2;
 				&:hover {
-					border:1px solid #999;
-				}
+					color:#9ee9f8;
+				};
 			}
 			a.rss {
 				background:url('/img/rss.png') center no-repeat #80bd01;
@@ -232,11 +232,10 @@
 				}
 			}
 			a.github {
-				background:#999;
-				border:1px solid #999;
 				&:hover {
-					border:1px solid #999;
-				}
+					color:#9ee9f8;
+				};
+				color:#6798a2;
 			}
 			a.facebook {
 				background:url('/img/facebook.png') center no-repeat #3b5998;
@@ -281,11 +280,11 @@
 				}
 			}
 			a.envelope {
-				background:#999;
-				border:1px solid #999;
 				&:hover {
-					border:1px solid #999;
-				}
+					color:#9ee9f8;
+				};
+				color:#6798a2;
+				font-size:22px;
 			}
 		}
 	}
