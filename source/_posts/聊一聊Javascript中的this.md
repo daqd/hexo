@@ -1,0 +1,112 @@
+---
+title: 聊一聊Javascript中的this
+date: 2016-12-02 23:31:05
+tags:
+  - 原生JS
+  - this指向
+---
+在大多的高级编程语言中，总能发现`this`的身影，然而在js中的`this`,跟其他语言中的`this`还是有区别的，即使没有扎实的js基础，我们在翻阅别人的js代码，总能看到类似于`self = this;`或者`that = this;`，再或者`this.xxx`类似的语句，好像认识它却又不认识他，直到我阅读了《javascript高级程序设计》和《你不知道的Javascript》系列丛书，再借助网络的一些资源，才系统的认识到this的用处。好吧，第一篇专题文章，来聊一聊我眼中js中的this.
+<!-- more -->
+## 默认this
+先来看看，this是个什么东西？？在chrome控制台打印this,如下：
+
+![mvvm](/images/2016/12/1202/this1.png)
+
+
+window是宿主环境为浏览器的JS的顶层对象，我们可以暂且认定为this默认指向的是window.但是，这样也不是很确切，还有要在浏览器环境前提下，假设，我们在nodeJs环境下，this默认指向的是global，所以我们不能认为this默认指向的是window，我们暂且认为this默认指向的是全局。
+举例证明：
+```
+//首先定义一个变量
+var a = 1;
+//定义一个函数
+function demo(){
+  this.a = 2;
+}
+demo();
+console.log(a);
+```
+
+运行结果：
+
+![mvvm](/images/2016/12/1202/defaultImg.png)
+
+可以看到，函数内部改变了外部全局定义的`a`的默认值，说明在函数内部`this`指向的是`window`对象，所以全局的变量（或者也可称`window.a`）会被改变。
+
+## 隐式绑定中的this
+定义一个变量：
+```
+var name = 'Window DADA';
+```
+在定义一个对象：
+```
+var obj = {
+  name:'mengyu mi',
+}
+```
+在定义的一个函数：
+```
+function getName(){
+  console.log(this.name);
+};
+```
+```
+obj.getNames = getName;
+```
+猜想下面两个结果：
+```
+getName(); //Window DADA
+obj.getNames(); //mengyu mi
+```
+实际结果：
+
+![this](/images/2016/12/1202/this2.png)
+
+由此可见，在进行函数`getName()`调用的时候，`this`调用的是默认的`window`，当将函数作为一个值赋给obj对象的一个属性时，在调用obj的`getNames`方法，此时this被绑定在了当前的上下文环境中，即`obj`对象，暂且称这种对this的绑定方式称之为隐式绑定。
+
+## 硬绑定中的this
+在javascript中有三个内置方法，他们可以强制改变`this`的指向，他们分别是`apply`，`call`和`bind`,称之为硬绑定。
+定义两个对象：
+```
+var obj1 = {
+  name: 'obj1',
+  getName: function(){
+    console.log(this.name);
+  }
+};
+var obj2 = {
+  name:'obj2'
+}
+```
+如上，我定义了两个对象，每个对象中有一个name属性，obj1对象中还有一个getName()方法，直接调用`obj1.getName()`的话，按照上面提到的隐式绑定，输出的应该是obj1，这个结果无可厚非。
+
+假设，我需要在obj2对象上调用obj1的getName()方法，笨方法是在obj2上定义一个跟obj1一样的getName方法，当然，这样做法也能达到目的，但是，显然不是最佳的办法，实际上，我只需要改变obj1中的getName()方法的this就可以了，这时候，`apply`、`call`和`bind`方法就可以派上用场了，这三个内置方法就是做个用的。
+
+![this](/images/2016/12/1202/this3.png)
+
+根据演示结果，可以看到`this`被强制绑定到了call()、apply()、bind()传入的对象的身上，这正是我所期望的。至于三个方法的用法及区别，会单独拿出一篇来介绍。
+
+## 对函数构造调用中的this
+看到这个标题，似乎有点绕，先简单说明一些标题。有的人称这种this绑定为构造函数的this绑定，然而在JS中并没有像其他高级编程语言（如java）中的构造函数，js中一般的函数声明都可以当做构造函数来使用，只是他们前面多了一个`new`关键字，似乎看起来更像传统意义上的构造函数罢了，似乎称之为“对一般函数的构造调用”似乎更加确切。
+
+还是先上示例代码：
+```
+function foo(name){
+  this.name = name;
+};
+
+foo.prototype.getName = function(){
+  console.log(this.name);
+};
+
+var foo1 = new foo('foo1');
+foo1.getName();
+
+var foo2 = new foo('foo2');
+foo2.getName();
+
+```
+运行结果：
+
+![this](/images/2016/12/1202/this4.png)
+
+所有的说法在代码运行都是苍白无力的，由此可以看到this被绑定到了构造出来的实例上。
