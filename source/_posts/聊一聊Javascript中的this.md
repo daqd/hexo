@@ -2,10 +2,10 @@
 title: 聊一聊Javascript中的this
 date: 2016-12-02 23:31:05
 tags:
-  - 原生JS
   - this指向
+  - 原生JS
 ---
-在大多的高级编程语言中，总能发现`this`的身影，然而在js中的`this`,跟其他语言中的`this`还是有区别的，即使没有扎实的js基础，我们在翻阅别人的js代码，总能看到类似于`self = this;`或者`that = this;`，再或者`this.xxx`类似的语句，好像认识它却又不认识他，直到我阅读了《javascript高级程序设计》和《你不知道的Javascript》系列丛书，再借助网络的一些资源，才系统的认识到this的用处。好吧，第一篇专题文章，来聊一聊我眼中js中的this.
+在大多的高级编程语言中，总能发现`this`的身影，然而在js中的`this`,跟其他语言中的`this`还是有区别的，在翻阅别人的js代码，总能看到类似于`self = this;`或者`that = this;`，再或者`this.xxx`类似的语句，好像认识它却又不认识他，直到我阅读了《javascript高级程序设计》和《你不知道的Javascript》系列丛书，再借助网络的一些资源，才系统的认识到this的用处。好吧，第一篇专题文章，来聊一聊我眼中js中的this.
 <!-- more -->
 ## 默认this
 先来看看，this是个什么东西？？在chrome控制台打印this,如下：
