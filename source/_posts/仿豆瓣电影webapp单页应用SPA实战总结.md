@@ -4,18 +4,35 @@ date: 2017-03-03 10:57:27
 tags:
   - vue.js
 ---
-去年年前的几个月时间，工作之余，一直在致力于重构M网的H5，写来写去，都是在重复的写一些页面，因为没有后端的支持，便没有将`vue-resourse`整合进来，俗话讲，没有上线的项目，技术栈就没有很成熟。为了尽量模拟真实的开发环境，几经搜索，找到了豆瓣电影开放的API，于是从中联航项目源码抽丝剥茧，结合豆瓣电影的API，实现一个完整的SPA应用。于是，在春节返京，作为新年的开始的第一次技术探索，用了大约一周工作之余的时间，完成了这样一个简单但很全面的小型DEMO.
+16年年前的几个月时间，工作之余，一直在致力于重构联航的H5，写来写去，都是在重复的写一些东西，因为没有后端的支持，便没有将`vue-resourse`整合进来。业界都说，没有上线的项目，项目用到的技术栈就不会落地的很成熟。为了尽量模拟真实的开发环境，几经搜索，找到了豆瓣电影开放的API，于是从中联航项目源码抽丝剥茧，结合豆瓣电影的API，计划实现一个完整的SPA应用。于是，在春节返京，作为新年的开始的第一次技术探索，用了大约一周工作之余的时间，完成了这样一个简单但很全面的小型DEMO.
 <!-- more -->
-
-## 一些抱(mei)怨(yong)的话
-`github`这个demo的上一次更新时间是15天前，至于为什么拖到现在才来总结：
-忙！忙！忙！有多忙？年前6天半欠公司的调休假,在没有白天和黑夜的加班中，在一个星期内基本还完了。高投入低产出的工作内容：后台项目兼容IE,切图静态页等等。
-
-## 正(che)文(dan)开(jie)始(shu)
 
 ### 项目地址
 源码地址：`git@github.com:daqd/douban-movie-webapp.git`
 在线预览地址：http://movie.mife.io/
+
+### 本地预览步骤
+
+下载源码
+```
+git clone git@github.com:daqd/douban-movie-webapp.git
+```
+进入到当前项目主目录
+```
+cd douban-movie-webapp
+```
+安装依赖包
+```
+npm install
+```
+开发模式运行
+```
+npm run dev
+```
+项目打包
+```
+npm run build
+```
 
 ### 所用到的技术栈
 - webpack
@@ -49,20 +66,21 @@ README.md | 项目的介绍markdown文件
 ![list](/images/2017/03/0303-2.png)
 
 #### src目录介绍
+
 目录或文件 | 注解
 ----|----
 assets/images | 资源文件夹，放置一些项目用到的图片资源
-components | 手动实现的一些`vue组件``
-css | 公共的css样式文件，也可理解为整个单页应用的一些基础样式
-js  | 项目中用到的一些公共的js方法定义在这里，之后我们可在需要的组件文件中手动引入某个方法调用
-views | 所有的视图存放的位置，可以理解为每个网页，但他们却不是网页，因为SPA应用只有一个html文件，姑且称呼其为视图
-vuex  | vuex状态管理目录，里面存放了状态管理所需的`action`，`state`，`mutation`,`getter`等
-App.vue  | APP组件，引入了`header`,`container`,`footer`组件
-main.js | 项目入口，路由，`vuex`状态管理，挂载节点等都定义在这里，`webpack`打包也会从这里开始
-routes.js | SPA应用路由配置文件，用来指向视图间的跳转
+components | 手动实现的一些`vue组件`
+css        | 公共的css样式文件，也可理解为整个单页应用的一些基础样式
+js         | 项目中用到的一些公共的js方法定义在这里，之后我们可在需要的组件文件中手动引入某个方法调用
+views      |所有的视图存放的位置，可以理解为每个网页，但他们却不是网页，因为SPA应用只有一个html文件，姑且称呼其为视图
+vuex       |vuex状态管理目录，里面存放了状态管理所需的action，state，mutation,getter等
+App.vue    | APP组件，引入了header,container,footer组件
+main.js    | 项目入口，路由，`vuex`状态管理，挂载节点等都定义在这里，`webpack`打包也会从这里开始
+routes.js  | SPA应用路由配置文件，用来指向视图间的跳转
 
 ### 项目开发思路
-上面对于整个项目的目录结构，进行了一个基本的介绍，通过测试豆瓣电影的api，发现有几个api已经不通了，最终能用到的api只有四个：最热电影列表，最新电影列表，top250的排行榜列表，已经电影详情的api，所以，整个SPA应用的构建之后，应该有三个列表页，三个列表页可通过底部的`tabbar`点击响应到，点击每个列表中的电影条目，进入到电影的详细页，最后的一个tabbar是一个个人中心视图，里面主要引入了mint-ui组件拼凑的一些页面。
+上面对于整个项目的目录结构，进行了一个基本的介绍，通过测试豆瓣电影的api，发现有几个api已经不通了，最终从里面筛选出四个API：最热电影列表，最新电影列表，top250的排行榜列表，已经电影详情的api，所以，整个SPA应用的构建之后，应该有三个列表页，三个列表页可通过底部的`tabbar`点击响应到，点击每个列表中的电影条目，进入到电影的详细页，最后的一个tabbar是一个个人中心视图，里面主要引入了mint-ui组件拼凑的一些页面。
 
 在这四个主要的视图中，三个列表页除了数据，样式应该都是基本一致的，所有我们定义一个电影列表组件（movieList.vue），在定义三个视图页调用这个电影列表组件，传入不同的请求地址即可。所有的电影详情页面除了数据不同，结构也是一致的,我们在定义一个电影详情单文件组件（movDetails.vue）,点击每个电影条目传入不同的请求地址，以及一些参数如电影id等即可，下面主要介绍两个组件：movieList.vue和movDetails.vue。
 
@@ -161,58 +179,7 @@ export default {
     height: 140px;
     // border-bottom:1px solid #c9c9c9;
     display: flex;
-    .movie-item-pic{
-      width: 180px;
-      height: 120px;
-      margin-left: 10px;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-    .movie-item-pic img{
-      width: 100%;
-    }
-
-    .movie-item-info{
-      width: 100%;
-      height: 140px;
-      margin-top: 10px;
-      margin-left: 7px;
-      .movie-item-info-title{
-        width: 100%;
-        height: 30px;
-        line-height:30px;
-        font-size: 18px;
-      }
-      .movie-item-info-star,.movie-item-info-toppic,.movie-item-info-superStar{
-        width: 100%;
-        height: 30px;
-        line-height: 30px;
-        overflow: hidden;
-        .rating{
-          color: #ffb400;
-          font-size: 14px;
-        }
-      }
-    }
-    .movie-item-toShowDetails{
-      width: 120px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .toShowDetails{
-        display: block;
-        width: 60px;
-        height: 30px;
-        border:1px solid #df2d2d;
-        color: #df2d2d;
-        border-radius: 5px;
-        line-height: 30px;
-        text-align: center;
-        margin-right: 10px;
-      }
-    }
-}
+    ....
 </style>
 ```
 在组件的生命周期函数created中，首先去读取调用该组件时传入的type,`props:['type']`在这里的作用的是定义从父组件传的到数据字段名称为`type`，子组件来使用，例如，定义了组件A,在组件A中定义了`props:['type']`，在组件B中可通过`<A :type="值"></A>`调用组件A,在A组件可直接通过传入的type值进行处理。详情可参考vue.js文档说明。
@@ -355,159 +322,134 @@ export default {
   .movie-info{
     width: 100%;
     height: 300px;
-    background: url("../assets/images/background.jpg") no-repeat;
-    background-size:cover;
-    background-position: 0px -260px;
-    .movie-info-content{
-      width: 100%;
-      height: 240px;
-      display: flex;
-    .movie-info-video{
-      width: 130px;
-      height: 200px;
-      margin: 30px 0px 0px 10px;
-    }
-    .movie-info-video img{
-      width: 130px;
-    }
-    .movie-info-list{
-      width: 100%;
-      height: 200px;
-      margin: 30px 0px 0px 10px;
-      .movie-info-list-item{
-        width: 100%;
-        height: 30px;
-        line-height: 30px;
-        color: #FFF;
-        .rating{
-          font-size: 14px;
-          color: #ffb400;
-        }
-        .ratings_count{
-          font-size: 10px;
-        }
-      }
-    }
-  }
-
-    .movie-info-ratings_count{
-      width: 100%;
-      height: 50px;
-      display: flex;
-      justify-content: space-around;
-    }
-    .movie-info-ratings_count a{
-      width: 45%;
-      height: 45px;
-      display: block;
-      line-height: 45px;
-      text-align: center;
-      background: #595e57;
-      color: #FFF;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-  }
-
-  /** 电影介绍 **/
-  .movie-summary{
-      width: 100%;
-      height: 165px;
-      margin-top: 8px;
-      border-bottom: 5px solid #f5f5f5;
-      .content{
-        width: 95%;
-        height: 120px;
-        overflow: hidden;
-        margin: 0 auto;
-        line-height: 25px;
-        text-align: justify;
-        color: #505050;
-      }
-      .more{
-          width: 100%;
-          height: 30px;
-          margin-top: 5px;
-          color:#ff3535;
-          display: flex;
-          justify-content: center;
-          align-items:center;
-      }
-  }
-
-  /** 明星 **/
-  .movie-casts-wrap{
-    &:extend(.movie-summary);
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    .movie-casts-content{
-      width: 95%;
-      height: 150px;
-      display: flex;
-      .movie-casts-item{
-        width: 25%;
-        height: 120px;
-        margin-right: 5px;
-        .movie-casts-item-img{
-          width: 100%;
-          height: auto;
-        }
-        .movie-casts-item-img img{
-          width: 100%;
-        }
-        .movie-casts-item-name{
-          width: 100%;
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          overflow: hidden;
-        }
-      }
-    }
-  }
-
-
-/** 长短影评切换 **/
-  .commentsBtn-wrap{
-    width: 95%;
-    height: 40px;
-    margin: 0 auto;
-    margin-top: 15px;
-    display: flex;
-    &>a{
-      display: block;
-      width: 50%;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      border:1px solid #df2d2d;
-      text-decoration: none;
-
-    }
-    .shortComment{
-      border-right-width: 0;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      background: #df2d2d;
-      color: #FFF;
-    }
-    .longComment{
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-  }
-
-  /** setAuto **/
-  .setAuto{
-    height: auto !important;
-  }
+    ...
 </style>
 
 ```
 该组件大致的逻辑跟列表的组件还是极其相似的，不同点在于需要判断是否是非法访问，判断是否直接通过路径进入，缺少movie Id参数，如果非法访问，我们需要将其重置到列表页或者首页，重置路由不是将当前路径跳转到列表页，而是将当前路径替换到列表页，否则返回会出现错误。
 
 ### Vuex
-文章开始提到，这个SPA是一个简单而又全面的demo，实际上，在这次的demo中，没有必要引入vuex，只有在构建中大型相对复杂的单页应用时才适合引入，简单的项目使用vuex可能会带来困扰。那么，vuex到底是一个东西？
+vuex是用来存储状态的，也可理解为是用来存储数据的，通俗的讲，可以理解为在整个应用之上会有一个仓库，仓库里存储着一些变量（状态），可以在应用的各个视图中修改，读取，假如状态得到修改，因为vue的双向绑定，相应的视图也会得到更新。
 
-vuex是用来存储状态的，也可理解为是用来存储数据的，那么，在每个vue组件中提供了data属性，data属性是一个函数，他返回一个数据集合，我们完全可以将数据状态存在data中，vuex不是多此一举么？所有新技术的出现肯定是为了解决某种问题而问世的，那么它是为了解决什么问题？他跟data又有什么区别？
+#### state(定义的一些状态值)
+```
+const state = {
+  path:'',  //返回路径
+  nextPath:'',  //被中断的路由路径
+  headerTit:'', //当前路由的title
+  loginStatus:false,  //是否已登录
+  srcType:'', //电影详细页来源类型
+  userName:'', //用户名
+  pageChangeStatus:'' //当前路由的切换状态 go/back
+}
+```
+#### getter（获取的状态的方法）
+```
+//base
+export const getPath = state => state.path //获取当前路径
+export const getNextPath = state => state.nextPath //获取被中断的路径
+export const getPageChangeStatus = state => state.pageChangeStatus //获取被中断的路径
+export const getHeaderTit = state => state.headerTit //获取返title
+export const getUserName = state => state.userName //获取title
+export const getLoginStatus = state => state.loginStatus //获取登录状态
+export const getSrcType= state => state.srcType //获取电影详细来源
+```
+#### mutations (改变状态的方法)
+```
+import {
+  SET_PATH,
+  NEXT_PATH,
+  PAGE_CHANGE_STATUS,
+  HEADER_TIT,
+  SET_USERNAME,
+  SET_LOGINSTATUS,
+  SET_MOVIE_SRC
+
+} from './mutation-types'
+
+const mutations = {
+  //设置当前路径
+  [SET_PATH] (state, path) {
+    state.path = path
+  },
+  //设置将要跳转到的路径
+  [NEXT_PATH] (state, path) {
+    state.nextPath = path
+  },
+  //设置路由切换时的状态
+  [PAGE_CHANGE_STATUS] (state, status) {
+    state.pageChangeStatus = status
+  },
+  //设置顶部tit
+  [HEADER_TIT] (state, tit) {
+    state.headerTit = tit
+  },
+  //设置用户名
+  [SET_USERNAME] (state, userName) {
+    state.userName = userName
+  },
+  //设置登录状态
+  [SET_LOGINSTATUS] (state, loginStatus) {
+    state.loginStatus = loginStatus
+  },
+  //设置token
+  [SET_MOVIE_SRC] (state, srcType) {
+    state.srcType = srcType
+  },
+
+}
+export default mutations;
+
+```
+### vue-router
+传统的web开发，页面的跳转都是通过form提交，或者js的location对象来执行跳转，SPA应用的区别在于整个应用的视图切换都是在一个页面下进行的，所以需要路由来指向视图的切换跳转。
+```
+export default [
+  //重定向
+  {
+    path: '/', redirect: '/hot'
+  },
+  //首页
+  {
+    path: '/hot',
+    component: resolve => {
+            require(['./views/home.vue'], resolve)
+        },
+    name:'豆瓣电影',
+  },
+  //即将上映
+  {
+    path: '/coming_soon',
+    component: resolve => {
+            require(['./views/coming_soon.vue'], resolve)
+        },
+    name:'即将上映'
+  },
+  //top250
+  {
+    path: '/top250',
+    component: resolve => {
+            require(['./views/top250.vue'], resolve)
+        },
+    name:'TOP250'
+  },
+  //我的
+  {
+    path: '/user',
+    component: resolve => {
+            require(['./views/user.vue'], resolve)
+        },
+    name:'关于我'
+  },
+  //电影详细信息
+  {
+    path: '/details',
+    component: resolve => {
+            require(['./views/movDetails.vue'], resolve)
+        },
+    name:'电影详情'
+  }
+];
+```
+## 总结
+整个SPA应用看似简单，但所用到的技术栈很全面，很多技术细节未提到，详细可参考vue.js官方文档，当前还有一个实现不太友好，title的标题目前存储在了router的name上，路由的name相当于路径的别名，也可用来执行跳转，显然，将title存储在name上是不合理的。有更好的实现方式，再来补充！
