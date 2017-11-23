@@ -6,6 +6,7 @@ tags:
 	- blog搭建
 categories: 环境搭建
 ---
+
 断断续续两天的时间，由之前的wordpress切换到firekylin，记录一下配置过程。
 大致过分以下几步：
 - 安装CentOS系统
@@ -13,13 +14,12 @@ categories: 环境搭建
 - 安装mysql数据库（WDCP面板已涵盖，不做阐述）
 - 配置Ftp工具（WDCP面板已涵盖，不做阐述）
 - 安装nodeJS
-<!--more-->
 - 安装Pm2
 - 安装firekylin
 - 配置PM2
 - 配置nginx
 
-
+<!--more-->
 ## 安装CentOS
 由于服务器是阿里云，可在阿里云控制台傻瓜式切换操作系统，我这里选择了公共镜像CentOS X64
 
@@ -134,4 +134,6 @@ sudo ln -s path/to/nginx.conf /usr/local/nginx/conf/include/www.mnzone.com.conf
 需要将` path.to` 改为当前的项目路径，` www.mnzone.com` 改为对应的域名。
 
 需要注明的是：wdcp的nginx配置目录，在vhost目录下。
+
+
 

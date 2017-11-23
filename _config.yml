@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 米梦宇博客 | 关注互联网前端开发的个人博客
+title: Mengyu's Notes
 subtitle: 心有猛虎，细嗅蔷薇
-description: 米梦宇个人网站，记录本人工作中遇到的问题，以及经验总结和分享的一个原创个人网站。
+description: 个人代码笔记博客，记录本人工作中踩过的坑，以及整理和分享学习过程中的干货。
 author: Mengyu's Notes
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.mnzone.com
+url: http://mife.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,7 +63,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+# theme: yilia
+theme: tranquilpeak
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
