@@ -87,7 +87,7 @@ sidebar:
         #     icon: linkedin
         mail:
             title: global.mail
-            url: mailto:daquanduan@gmail.com
+            url: mailto:hellojser@gmail.com
             icon: envelope-o
     # rss:
     #     rss:
@@ -188,20 +188,20 @@ tag_pagination: true
 # ---------------
 
 # Your Disqus shortname
-# disqus_shortname: mife
+disqus_shortname: mife
 # Your Gitment information
 # Read https://github.com/imsun/gitment#get-started to setup Gitment
 gitment:
     # Switch
-    enable: true
+    enable: false
     # Your Github ID (Github username):
-    github_id: daqd
+    # github_id: daqd
     # The repo to store comments:
-    repo: hexo
+    # repo: hexo
     # Your client ID:
-    client_id: 3311642dc32624e17708
+    # client_id: 3311642dc32624e17708
     # Your client secret:
-    client_secret: 3980d0399c5f9ce1d9f4dde70dccf54fbc3f92c9
+    # client_secret: 3980d0399c5f9ce1d9f4dde70dccf54fbc3f92c9
 
 # -------------------
 # Integrated services
