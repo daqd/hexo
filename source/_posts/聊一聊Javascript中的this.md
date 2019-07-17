@@ -4,6 +4,7 @@ date: 2016-12-02 23:31:05
 tags:
   - this指向
   - 原生JS
+  - 技能知识图谱
 categories: 原生JS
 ---
 在大多的高级编程语言中，总能发现this的身影，然而在js中的this，跟其他语言中的this还是有区别的，在翻阅别人的js代码，总能看到类似于`self = this;`，或者`func.bind(this);`，再或者`this.xxx`类似的语句，好像认识它却又不认识他，直到我阅读了《javascript高级程序设计》和《你不知道的Javascript》系列丛书，再借助网络的一些文章，才渐渐的认识了JS中的this。

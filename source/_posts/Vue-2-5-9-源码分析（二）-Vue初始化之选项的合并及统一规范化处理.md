@@ -4,6 +4,7 @@ date: 2018-08-08 18:35:56
 tags: 
 	- 源码分析
   - Vue源码分析
+  - 技能知识图谱
 ---
 通过Vue构造函数的声明可以看出，在调用`new Vue({...options})`的同时，Vue构造函数首先会调用`this._init()`，并将Vue的初始化选项作为参数传递进去，这也是初始化Vue的唯一入口。通过之前整理好的流程图，我们能够轻易地在`src/core/instance/init.js`中的`initMixin`找到_init的方法。
 <!-- more -->
